@@ -1,3 +1,3 @@
 # Privacy Policy
 
-Edit this file to define the privacy policy for your application.
+Here the data of privacy policy for user this product.
