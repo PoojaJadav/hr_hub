@@ -48,9 +48,9 @@ class Manage extends Component
 
         $this->user->assignRole(ROLE_EMPLOYEE)->save();
 
-        session()->flash('banner','Employee created successfully!');
+        $this->toastNotify(__('Employee has been created successfully!'), '', TOAST_SUCCESS);
 
-        redirect()->route('admin.employees.index');
+        $this->redirectToIndex();
     }
 
     private function redirectToIndex(): void
@@ -66,7 +66,7 @@ class Manage extends Component
 
         $this->user->save();
 
-        session()->flash('banner','Employee updated successfully!');
+        $this->toastNotify(__('Employee has been updated successfully!'), '', TOAST_SUCCESS);
 
         $this->redirectToIndex();
     }

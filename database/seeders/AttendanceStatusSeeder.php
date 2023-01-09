@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\AttendenceStatus;
+use App\Models\AttendanceStatus;
 use Illuminate\Database\Seeder;
 
-class AttendenceStatusSeeder extends Seeder
+class AttendanceStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,18 +14,18 @@ class AttendenceStatusSeeder extends Seeder
      */
     public function run()
     {
-        AttendenceStatus::insert([
+        AttendanceStatus::insert([
             'status'=>'Present',
         ]);
 
-        AttendenceStatus::insert([
+        AttendanceStatus::insert([
             'status'=>'Leave',
         ]);
 
-        AttendenceStatus::insert([
+        AttendanceStatus::insert([
             'status'=>'Half-Day',
         ]);
-        AttendenceStatus::insert([
+        AttendanceStatus::insert([
             'status'=>'Work-From-Home',
         ]);
     }

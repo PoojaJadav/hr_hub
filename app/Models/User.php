@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\Livewire\HasModal;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -65,4 +64,23 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function attendances()
+    {
+        return $this->hasMany(EmployeeAttendence::class,'employee_id');
+    }
+
+    public function attendance()
+    {
+        return $this->hasOne(EmployeeAttendence::class,'employee_id');
+    }
+
+    public function scopeActive($query)
+    {
+        $query->where('is_active', true);
+    }
+
+    public function getFullNameAttribute() {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+       }
 }

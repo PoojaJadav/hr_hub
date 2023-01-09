@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
                 'last_name' => $input['last_name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
-            ]), function (User $user) {
+            ])->assignRole(ROLE_EMPLOYEE), function (User $user) {
                 $this->createTeam($user);
             });
         });
@@ -52,7 +52,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
-            'first_name' => explode(' ', $user->first_name, 2)[0]."'s Team",
+            'name' => explode(' ', $user->first_name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
     }

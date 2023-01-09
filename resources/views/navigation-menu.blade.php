@@ -23,15 +23,10 @@
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('admin.employees.index') }}" :active="request()->routeIs('admin.employees.index')">
-                            {{ __('Attendece') }}
-                        </x-jet-nav-link>
-                    </div>
-                    {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('admin.attendence.index') }}" :active="request()->routeIs('admin.attendence.index')">
+                        <x-jet-nav-link href="{{ route('admin.attendance.index') }}" :active="request()->routeIs('admin.attendance.index')">
                             {{ __('Attendence') }}
                         </x-jet-nav-link>
-                    </div> --}}
+                    </div>
                 @endrole
             </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AttendenceController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('employees', EmployeeController::class);
 
-// Route::resource('attendence', AttendenceController::class);
+Route::resource('attendance', AttendanceController::class);

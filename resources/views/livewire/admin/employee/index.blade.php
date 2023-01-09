@@ -55,7 +55,7 @@
                                                     </svg>
                                                 </a>
                                                 <span data-cy="delete-button-{{ $employee->id }}" role="button"
-                                                    class="text-darkgray hover:text-lightred inline-block cursor-pointer"
+                                                    class="text-darkgray hover:text-lightred inline-block cursor-pointer ml-2"
                                                     wire:click="openConfirmModal({{ $employee->id }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current h-5 w-5" fill="none"
                                                         viewBox="0 0 24 24" stroke="currentColor">

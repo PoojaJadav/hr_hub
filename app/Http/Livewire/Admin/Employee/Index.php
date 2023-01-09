@@ -21,8 +21,11 @@ class Index extends Component
     public function delete()
     {
         $this->deletedEmployee->delete();
+        $this->deletedEmployee->is_active = false;
+        $this->deletedEmployee->save();
         $this->reset('show', 'deletedEmployee');
         $this->render();
+        $this->toastNotify(__('Employee has been deleted successfully!'), '', TOAST_ERROR);
     }
 
     public function setStatus(User $applicant)
@@ -30,6 +33,7 @@ class Index extends Component
         $applicant->is_active = ! $applicant->is_active;
         $applicant->save();
         $applicant->refresh();
+        $this->toastNotify(__('Employee status has been successfully!'), '', TOAST_INFO);
     }
 
     public function render()

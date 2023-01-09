@@ -12,6 +12,17 @@
             </div>
         @endif
 
+        <div>
+            @if (session()->has('error'))
+                <div class="font-medium text-red-600">
+                    {{ __('Whoops! Something went wrong.') }}
+                </div>
+                <li class="p-4 mb-4 text-sm text-red-600 rounded-lg" role="alert">
+                    {{ session('error') }}
+                </li>
+                @endif
+        </div>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
