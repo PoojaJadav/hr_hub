@@ -44,5 +44,7 @@ class StatusDropdown extends Component
         [
             'status_id' => $this->selectedStatus,
         ]);
+
+        $this->toastNotify(__('Attendance take successfully!'), '', TOAST_SUCCESS);
     }
 }

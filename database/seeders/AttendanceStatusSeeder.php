@@ -14,19 +14,20 @@ class AttendanceStatusSeeder extends Seeder
      */
     public function run()
     {
-        AttendanceStatus::insert([
-            'status'=>'Present',
+        AttendanceStatus::factory()->create([
+            'status' => 'Present',
         ]);
 
-        AttendanceStatus::insert([
-            'status'=>'Leave',
+        AttendanceStatus::factory()->create([
+            'status' => 'Leave',
         ]);
 
-        AttendanceStatus::insert([
-            'status'=>'Half-Day',
+        AttendanceStatus::factory()->create([
+            'status' => 'Half-Day',
         ]);
-        AttendanceStatus::insert([
-            'status'=>'Work-From-Home',
+
+        AttendanceStatus::factory()->create([
+            'status' => 'Work-From-Home',
         ]);
     }
 }
