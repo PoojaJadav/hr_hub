@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Employee;
 
-use App\Models\AttendanceStatus;
 use App\Models\User;
 use Livewire\Component;
 
@@ -15,10 +14,15 @@ class StatusDropdown extends Component
 
     public $attendanceDate;
 
-    public function mount(User $employee,$statuses)
+    public function mount(User $employee,$statuses,$attendanceDate)
     {
+        $this->employee->attendances->each(function($status){
+            if($status->date == $this->attendanceDate){
+                $this->selectedStatus = $status->status_id;
+            }
+        });
         $this->statuses = $statuses;
-        $this->selectedStatus = $this->employee->attendance?->status_id;
+        $this->attendanceDate = $attendanceDate;
     }
 
     public function render()
@@ -28,9 +32,17 @@ class StatusDropdown extends Component
 
     public function changeStatus()
     {
-        $this->employee->attendance()->updateOrCreate(['employee_id' => $this->employee->id],[
+        if(!$this->selectedStatus){
+            $this->toastNotify(__('Please select proper status!'), '', TOAST_ERROR);
+            return;
+        }
+
+        $this->employee->attendances()->updateOrCreate([
+            'employee_id' => $this->employee->id,
+            'date'=> $this->attendanceDate->toDateString()
+        ],
+        [
             'status_id' => $this->selectedStatus,
-            'date' => now(),
         ]);
     }
 }
