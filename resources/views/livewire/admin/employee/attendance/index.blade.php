@@ -7,6 +7,7 @@
                         <h1 class="text-xl font-semibold text-gray-900 pt-4">Employees</h1>
                     </div>
                 </div>
+                @if ($employees->count())
                 <div class="mt-8 flex flex-col">
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="mb-4 mt-4 ml-6">
@@ -28,12 +29,21 @@
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $employee->full_name }}</td>
                                             @foreach ($dates as $date)
-                                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                                                    <livewire:employee.status-dropdown :employee='$employee' :statuses='$statuses' :attendanceDate='$date' wire:key="{{ $employee->id }}" />
-                                                </td>
+                                                @if($date->isWeekend())
+                                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">-</td>
+                                                @else
+                                                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                                                        <livewire:employee.status-dropdown :employee='$employee' :statuses='$statuses' :attendanceDate='$date' wire:key="{{ $employee->id }}" />
+                                                    </td>
+                                                @endif
                                             @endforeach
                                         </tr>
                                     @endforeach
+                                    @else
+                                   <div class="bg-red-200 p-8 mt-6 rounded-lg mb-6">
+                                        <p class="text-red-700">No record found</p>
+                                   </div>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

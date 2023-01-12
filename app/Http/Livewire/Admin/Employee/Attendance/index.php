@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Traits\Livewire\HasModal;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Carbon;
 
 class Index extends Component
 {
@@ -23,7 +24,7 @@ class Index extends Component
     {
         $this->startDate = now()->startOfWeek()->toDateString();
         $this->endDate = now()->endOfWeek()->toDateString();
-        $this->statuses = AttendanceStatus::all();
+        $this->statuses = AttendanceStatus::all('id','status');
     }
 
     public function render()

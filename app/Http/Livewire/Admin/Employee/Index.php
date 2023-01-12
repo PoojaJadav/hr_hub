@@ -12,6 +12,11 @@ class Index extends Component
 
     public $deletedEmployee;
 
+    private function redirectToIndex(): void
+    {
+        redirect()->route('admin.employees.index');
+    }
+
     public function openConfirmModal(User $applicant)
     {
         $this->open();
@@ -26,6 +31,7 @@ class Index extends Component
         $this->reset('show', 'deletedEmployee');
         $this->render();
         $this->toastNotify(__('Employee has been deleted successfully!'), '', TOAST_ERROR);
+        $this->redirectToIndex();
     }
 
     public function setStatus(User $applicant)
@@ -34,12 +40,17 @@ class Index extends Component
         $applicant->save();
         $applicant->refresh();
         $this->toastNotify(__('Employee status has been successfully!'), '', TOAST_INFO);
+        $this->redirectToIndex();
     }
 
     public function render()
     {
+        $employees = User::role(ROLE_EMPLOYEE)->select('id','first_name','last_name','email','is_active')
+        ->latest()
+        ->paginate(10);
+
         return view('livewire.admin.employee.index',[
-            'employees'=>User::role(ROLE_EMPLOYEE)->latest()->paginate(10),
+            'employees'=>$employees,
         ]);
     }
 }
