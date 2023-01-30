@@ -1,20 +1,8 @@
+<div>
 <div class="py-12">
-    <head>
-        <style>
-             .toggle-checkbox:checked {
-                @apply: right-0 border-green-400;
-                right: 0;
-                border-color: #68D391;
-            }
-            .toggle-checkbox:checked + .toggle-label {
-                @apply: bg-green-400;
-                background-color: #68D391;
-            }
-        </style>
-    </head>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden rounded-md">
-            <div class="px-4 sm:px-6 lg:px-8">
+            <div class="px-4 sm:px-6 lg:px-8 mb-6">
                 <div class="sm:flex sm:items-center mt-3">
                     <div class="sm:flex-auto">
                         <h1 class="text-xl font-semibold text-gray-900 pt-4">Employees</h1>
@@ -33,6 +21,38 @@
                                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">First Name</th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Last Name</th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Email</th>
+                                    <th scope="col" class="cursor-pointer">
+                                        <div class="flex items-center">
+                                            <button wire:click="sortBy('birth_date')" class="font-semibold text-gray-900 text-sm">Date Of Birth</button>
+                                            @if($sortField != 'birth_date')
+                                               <span></span>
+                                            @elseif($sortAsc)
+                                                <svg class="ml-2 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                                                </svg>
+                                            @else
+                                                <svg class="ml-2 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            @endif
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="cursor-pointer">
+                                        <div class="flex items-center">
+                                            <button wire:click="sortBy('joined_at')" class="font-semibold text-gray-900 text-sm">Joined At</button>
+                                            @if($sortField != 'joined_at')
+                                                <span></span>
+                                            @elseif($sortAsc)
+                                                <svg class="ml-2 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                                                </svg>
+                                            @else
+                                                <svg class="ml-2 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            @endif
+                                        </div>
+                                    </th>
                                     <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">Action</th>
                                     </tr>
                                 </thead>
@@ -42,6 +62,8 @@
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $employee->first_name }}</td>
                                                 <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->last_name }}</td>
                                                 <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->email }}</td>
+                                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->birth_date?->format('d-m-Y') ?? 'No data' }} </td>
+                                                <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->joined_at?->format('d-m-Y') ?? 'No data' }}</td>
                                                 <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
                                                     <a data-cy="edit-button-{{ $employee->id }}" role="button"
                                                         class="text-darkgray hover:text-gray inline-block cursor-pointer"
@@ -85,3 +107,15 @@
     </div>
     @include('template.employee.delete_modal')
 </div>
+</div>
+<style>
+    .toggle-checkbox:checked {
+       @apply: right-0 border-green-400;
+       right: 0;
+       border-color: #68D391;
+   }
+   .toggle-checkbox:checked + .toggle-label {
+       @apply: bg-green-400;
+       background-color: #68D391;
+   }
+</style>

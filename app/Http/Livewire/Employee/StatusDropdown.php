@@ -8,20 +8,20 @@ use Livewire\Component;
 class StatusDropdown extends Component
 {
     public $employee;
-    public $statuses;
+    public $labels;
 
     public $selectedStatus;
 
     public $attendanceDate;
 
-    public function mount(User $employee,$statuses,$attendanceDate)
+    public function mount(User $employee,$labels,$attendanceDate)
     {
         $this->employee->attendances->each(function($status){
             if($status->date == $this->attendanceDate){
                 $this->selectedStatus = $status->status_id;
             }
         });
-        $this->statuses = $statuses;
+        $this->labels = $labels;
         $this->attendanceDate = $attendanceDate;
     }
 

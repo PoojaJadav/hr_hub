@@ -22,7 +22,6 @@ class User extends Authenticatable
     use HasTeams;
     use SoftDeletes;
     use Notifiable;
-    use TwoFactorAuthenticatable;
     use HasModal;
 
     /**
@@ -31,7 +30,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'first_name','last_name', 'email', 'password','is_active',
+        'first_name','last_name', 'email', 'password','is_active','birth_date','joined_at',
     ];
 
     /**
@@ -54,6 +53,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_active' => 'boolean',
+        'birth_date' => 'date:Y-m-d',
+        'joined_at' => 'date:Y-m-d',
     ];
 
     /**
@@ -67,12 +68,12 @@ class User extends Authenticatable
 
     public function attendances()
     {
-        return $this->hasMany(EmployeeAttendence::class,'employee_id');
+        return $this->hasMany(EmployeeAttendance::class,'employee_id');
     }
 
     public function attendance()
     {
-        return $this->hasOne(EmployeeAttendence::class,'employee_id');
+        return $this->hasOne(EmployeeAttendance::class,'employee_id');
     }
 
     public function scopeActive($query)
@@ -80,7 +81,17 @@ class User extends Authenticatable
         $query->where('is_active', true);
     }
 
-    public function getFullNameAttribute() {
+    public function getFullNameAttribute()
+    {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
-       }
+    }
+
+    protected function defaultProfilePhotoUrl()
+    {
+        $name = trim(collect(explode(' ', $this->first_name.' '.$this->last_name))->map(function ($segment) {
+            return mb_substr($segment, 0, 1);
+        })->join(' '));
+
+        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+    }
 }

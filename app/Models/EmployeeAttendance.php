@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeAttendence extends Model
+class EmployeeAttendance extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class EmployeeAttendence extends Model
         'date' => 'date'
     ];
 
-    public function user()
+    public function employee()
     {
         return $this->belongsTo(User::class);
     }

@@ -18,6 +18,8 @@ class Manage extends Component
         'user.first_name' => 'required|max:50',
         'user.last_name' => 'required|max:50',
         'user.email' => 'required|email|max:50|unique:users,email',
+        'user.birth_date' => 'required|date|before:today',
+        'user.joined_at' => 'required|date|before_or_equal:today',
     ];
 
     public function mount(User $user)

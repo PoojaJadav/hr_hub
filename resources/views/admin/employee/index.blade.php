@@ -1,5 +1,7 @@
-<x-app-layout>
-    <div>
-        <livewire:admin.employee.index />
-    </div>
-</x-app-layout>
+<div>
+    <x-app-layout>
+        <div>
+            <livewire:admin.employee.index />
+        </div>
+    </x-app-layout>
+</div>

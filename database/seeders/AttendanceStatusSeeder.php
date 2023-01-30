@@ -14,20 +14,20 @@ class AttendanceStatusSeeder extends Seeder
      */
     public function run()
     {
-        AttendanceStatus::factory()->create([
-            'status' => 'Present',
-        ]);
 
-        AttendanceStatus::factory()->create([
-            'status' => 'Leave',
-        ]);
+        $statusList = [
+            'present' => 'Present',
+            'absent' => 'Absent',
+            'wfh' => 'WFH',
+            'half_day' => 'Half Day',
+            'late' => 'Late',
+        ];
 
-        AttendanceStatus::factory()->create([
-            'status' => 'Half-Day',
-        ]);
-
-        AttendanceStatus::factory()->create([
-            'status' => 'Work-From-Home',
-        ]);
+        foreach ($statusList as $identifier => $status) {
+            AttendanceStatus::create([
+                'identifier' => $identifier,
+                'label'      => $status,
+            ]);
+        }
     }
 }

@@ -7,15 +7,16 @@ use App\Models\User;
 use Livewire\Component;
 use App\Traits\Livewire\HasModal;
 use Carbon\CarbonPeriod;
-use Illuminate\Support\Carbon;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
     use HasModal;
+    use WithPagination;
 
     public $employee;
-    public $status;
-    public $statuses;
+    public $label;
+    public $labels;
 
     public $startDate;
     public $endDate;
@@ -24,7 +25,7 @@ class Index extends Component
     {
         $this->startDate = now()->startOfWeek()->toDateString();
         $this->endDate = now()->endOfWeek()->toDateString();
-        $this->statuses = AttendanceStatus::all('id','status');
+        $this->labels = AttendanceStatus::all('id','label');
     }
 
     public function render()
@@ -37,7 +38,7 @@ class Index extends Component
 
         $dates = CarbonPeriod::create($this->startDate,$this->endDate)->toArray();
 
-        return view('livewire.admin.employee.attendance.index',[
+       return view('livewire.admin.employee.attendance.index',[
             'employees' => $employees,
             'dates' => $dates,
         ]);
