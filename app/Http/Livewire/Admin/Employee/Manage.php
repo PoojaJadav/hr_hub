@@ -18,7 +18,7 @@ class Manage extends Component
         'user.first_name' => 'required|max:50',
         'user.last_name' => 'required|max:50',
         'user.email' => 'required|email|max:50|unique:users,email',
-        'user.birth_date' => 'required|date|before:today',
+        'user.birth_date' => 'nullable|before:today',
         'user.joined_at' => 'required|date|before_or_equal:today',
     ];
 
@@ -50,6 +50,8 @@ class Manage extends Component
 
         $this->user->assignRole(ROLE_EMPLOYEE)->save();
 
+        $this->user->refresh();
+
         $this->toastNotify(__('Employee has been created successfully!'), '', TOAST_SUCCESS);
 
         $this->redirectToIndex();
@@ -67,6 +69,8 @@ class Manage extends Component
         ]));
 
         $this->user->save();
+
+        $this->user->refresh();
 
         $this->toastNotify(__('Employee has been updated successfully!'), '', TOAST_SUCCESS);
 
