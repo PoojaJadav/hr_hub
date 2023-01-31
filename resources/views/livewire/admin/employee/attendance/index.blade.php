@@ -1,11 +1,11 @@
-<div class="bg-gray-100 text-gray-900 leading-normal">
+<div class="bg-gray-100 text-gray-900 leading-normal 2xl:flex 2xl:justify-center 2xl:w-ful 2xl:p-4">
     <div
-        class="py-8 pt-4 bg-white">
+        class="py-8 pt-4 2xl:p-8 bg-white">
 
         <div class="overflow-x-auto mt-4">
             @if ($employees->count())
             <div class="table-responsive">
-                <div class="mb-4 mt-4 ml-6">
+                <div class="mb-4 mt-4 ml-2">
                     <input wire:model='startDate' wire:change='getStartDate' class="border-gray-300 text-base border-solid rounded-lg" type="date">
                     <input wire:model='endDate' wire:change='getEndDate' class="border-gray-300 text-base border-solid rounded-lg" type="date">
                 </div>
@@ -33,7 +33,7 @@
                                     <td class="flex-shrink-0 px-6 py-4 w-36 text-sm text-gray-500"><span class="ml-8">-</span></td>
                                 @else
                                     <td class="flex-shrink-0 px-6 py-4 w-52 text-sm text-gray-500">
-                                        <livewire:employee.status-dropdown :employee='$employee' :labels='$labels' :attendanceDate='$date' wire:key="{{ $employee->id }}" />
+                                        <livewire:employee.status-dropdown :employee='$employee' :statuses='$statuses' :attendanceDate='$date' wire:key="{{ $employee->id }}" />
                                     </td>
                                 @endif
                             @endforeach

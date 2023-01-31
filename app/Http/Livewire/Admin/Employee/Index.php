@@ -16,7 +16,6 @@ class Index extends Component
 
     public $sortField;
     public $sortAsc;
-    // public $perPage = 10;
 
     public function sortBy($field)
     {
@@ -64,12 +63,6 @@ class Index extends Component
         ->when($this->sortField,function($query){
             $query->orderBy($this->sortField,$this->sortAsc ? 'asc' : 'desc');
         })->paginate(10);
-
-        // $employees = User::role(ROLE_EMPLOYEE)->select(['id','first_name', 'last_name','birth_date','email','is_active','joined_at',
-        // DB::raw("DATE_FORMAT(joined_at,'%m') as month"),DB::raw("DATE_FORMAT(joined_at,'%d') as day")])
-        // ->orderBy('month', 'ASC')
-        // ->orderBy('day', 'ASC')
-        // ->get();
 
         return view('livewire.admin.employee.index',[
             'employees'=>$employees,

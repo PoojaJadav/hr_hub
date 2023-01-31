@@ -33,7 +33,6 @@
         <div class="fixed inset-0 bg-black bg-opacity-20 z-40"></div>
     </div>
 
-    {{--    <div x-cloak x-show="show" class="fixed inset-0 z-20 flex items-center w-full h-full m-auto {{ $maxWidth }} sm:mx-auto"--}}
     <div x-cloak x-show="show" data-cy="confirmation-model"
          class="fixed top-1/2 left-1/2 z-50 w-11/12 md:w-full max-w-lg transform -translate-x-1/2 -translate-y-1/2"
          x-transition:enter="transition transform ease-in duration-150"

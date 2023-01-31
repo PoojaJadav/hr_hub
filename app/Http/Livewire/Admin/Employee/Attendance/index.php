@@ -15,8 +15,8 @@ class Index extends Component
     use WithPagination;
 
     public $employee;
-    public $label;
-    public $labels;
+    public $status;
+    public $statuses;
 
     public $startDate;
     public $endDate;
@@ -25,7 +25,7 @@ class Index extends Component
     {
         $this->startDate = now()->startOfWeek()->toDateString();
         $this->endDate = now()->endOfWeek()->toDateString();
-        $this->labels = AttendanceStatus::all('id','label');
+        $this->statuses = AttendanceStatus::all('id','label');
     }
 
     public function render()
@@ -46,17 +46,11 @@ class Index extends Component
 
     public function getStartDate()
     {
-        $startDate = $this->startDate;
+        return $this->startDate;
     }
 
     public function getEndDate()
     {
-        $endDate = $this->endDate;
+        return $this->endDate;
     }
-
-    //For custom Pagination
-    // public function paginationView()
-    // {
-    //     return 'livewire.custom-pagination-links-view';
-    // }
 }

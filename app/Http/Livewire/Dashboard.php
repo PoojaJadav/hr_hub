@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\AttendanceStatus;
-use App\Models\EmployeeAttendance;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
