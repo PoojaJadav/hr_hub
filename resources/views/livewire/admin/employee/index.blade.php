@@ -1,4 +1,3 @@
-<div>
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden rounded-md">
@@ -24,9 +23,7 @@
                                     <th scope="col" class="cursor-pointer">
                                         <div class="flex items-center">
                                             <button wire:click="sortBy('birth_date')" class="font-semibold text-gray-900 text-sm">Date Of Birth</button>
-                                            @if($sortField != 'birth_date')
-                                               <span></span>
-                                            @elseif($sortAsc)
+                                            @if($sortAsc)
                                                 <svg class="ml-2 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
                                                 </svg>
@@ -40,9 +37,7 @@
                                     <th scope="col" class="cursor-pointer">
                                         <div class="flex items-center">
                                             <button wire:click="sortBy('joined_at')" class="font-semibold text-gray-900 text-sm">Joined At</button>
-                                            @if($sortField != 'joined_at')
-                                                <span></span>
-                                            @elseif($sortAsc)
+                                           @if($sortAsc)
                                                 <svg class="ml-2 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
                                                 </svg>
@@ -90,9 +85,9 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                   <div class="bg-red-200 p-8 mt-6 rounded-lg">
+                                <div class="bg-red-200 p-8 mt-6 rounded-lg">
                                         <p class="text-red-700">No record found</p>
-                                   </div>
+                                </div>
                                     @endif
                                 </tbody>
                             </table>
@@ -106,7 +101,6 @@
         </div>
     </div>
     @include('template.employee.delete_modal')
-</div>
 </div>
 <style>
     .toggle-checkbox:checked {
