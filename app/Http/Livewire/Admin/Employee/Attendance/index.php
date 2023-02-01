@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Traits\Livewire\HasModal;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Carbon;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -23,8 +24,8 @@ class Index extends Component
 
     public function mount()
     {
-        $this->startDate = now()->startOfWeek()->toDateString();
-        $this->endDate = now()->endOfWeek()->toDateString();
+        $this->startDate = now()->subWeek()->toDateString();
+        $this->endDate = now()->today()->toDateString();
         $this->statuses = AttendanceStatus::all('id','label');
     }
 
@@ -44,13 +45,20 @@ class Index extends Component
         ]);
     }
 
-    public function getStartDate()
+    public function updatedStartDate()
     {
-        return $this->startDate;
+        if(Carbon::parse($this->startDate)->greaterThan($this->endDate)){
+            $this->startDate = now()->subWeek()->toDateString();
+            return $this->toastNotify(__('Please select proper date!'), '', TOAST_INFO);
+         }
     }
 
-    public function getEndDate()
+    public function updatedEndDate()
     {
-        return $this->endDate;
+        if(Carbon::parse($this->endDate)->lessThan($this->startDate)){
+            $this->endDate = now()->today()->toDateString();
+            return $this->toastNotify(__('Please select proper date!'), '', TOAST_INFO);
+        }
+
     }
 }

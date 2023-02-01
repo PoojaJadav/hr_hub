@@ -29,6 +29,6 @@ class AttendanceStatus extends Model
 
     public static function getStatusId($name)
     {
-        return self::where('identifier',$name)->first()->id;
+        return self::where('identifier',$name)->first()?->id;
     }
 }

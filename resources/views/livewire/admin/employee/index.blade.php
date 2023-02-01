@@ -10,7 +10,6 @@
                         <x-jet-nav-link  x-jet-nav-link href="{{ route('admin.employees.create') }}">Add Employee</x-jet-nav-link>
                     </div>
                 </div>
-                @if ($employees->count())
                 <div class="mt-8 flex flex-col">
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -52,7 +51,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
-                                        @foreach ($employees as $employee)
+                                        @forelse ($employees as $employee)
                                             <tr>
                                                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $employee->first_name }}</td>
                                                 <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->last_name }}</td>
@@ -83,12 +82,17 @@
                                                         :isOn="$employee?->is_active"/>
                                                 </td>
                                             </tr>
-                                        @endforeach
-                                    @else
-                                <div class="bg-red-200 p-8 mt-6 rounded-lg">
-                                        <p class="text-red-700">No record found</p>
-                                </div>
-                                    @endif
+                                        @empty
+                                            <tr>
+                                                <td colspan="11">
+                                                    <div class="mb-8">
+                                                        <div class="text-base font-extralight text-center mt-8 text-gray-500">
+                                                            {{ __('No Data Found') }}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -1,16 +1,13 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Dashboard') }}
+    </h2>
 
     @role(ROLE_ADMIN)
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden rounded-md">
                     <div class="px-4 sm:px-6 lg:px-8">
-                        @if ($employees->count())
                         <div class="flex justify-end">
                             <div class="">
                                 <div class="p-4 flex-shrink-0 flex items-center justify-between">
@@ -91,7 +88,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="divide-y divide-gray-200">
-                                                @foreach ($employees as $employee)
+                                                @forelse ($employees as $employee)
                                                         <tr>
                                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">{{ $employee->full_name }}</td>
                                                             <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $workingDaysCount ?: '-' }}</td>
@@ -101,12 +98,17 @@
                                                             <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->half_day_count ?: '-' }}</td>
                                                             <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">{{ $employee->late_count ?: '-' }}</td>
                                                         </tr>
-                                                @endforeach
-                        @else
-                        <div class="bg-red-200 p-8 mt-6 rounded-lg">
-                            <p class="text-red-700">No record found</p>
-                        </div>
-                        @endif
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="11">
+                                                            <div class="mb-8">
+                                                                <div class="text-base font-extralight text-center mt-8 text-gray-500">
+                                                                    {{ __('No Data Found') }}
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
                                             </tbody>
                                         </table>
                                     </div>
