@@ -6,5 +6,5 @@
     <span aria-hidden="true"
           class="{{ $isOn ? 'bg-green-600 border-gray' : 'bg-red-600 border-gray' }} border-[2px] pointer-events-none absolute h-5 w-9 mx-auto rounded-full transition ease-in-out duration-200"></span>
     <span aria-hidden="true"
-          class=" {{ $isOn ? 'translate-x-5 bg-white' : 'translate-x-2 bg-white' }} pointer-events-none absolute left-0 inline-block h-3.5 w-3.5 rounded-full transform ring-0 transition ease-in-out duration-200"></span>
+          class=" {{ $isOn ? 'translate-x-5 bg-white' : 'translate-x-1.5 bg-white' }} pointer-events-none absolute left-0 inline-block h-3.5 w-3.5 rounded-full transform ring-0 transition ease-in-out duration-200"></span>
 </button>
